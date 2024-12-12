@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>シフト選択</title>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<style>
+		/* 選択された行のスタイル */
+		.selected {
+			background-color: #cce5ff;
+		}
+	</style>
+</head>
+<body>
+
+	<select name="氏名選択">
+		<option value="0012">田中太郎</option>
+		<option value="0013">宮沢花子</option>
+		<option value="0014">山田浩介</option>
+		</select>
+		
+		
+
+	<table data-sl-formclass="data_holder" class="table-selectable table w-75">
+		<thead>
+			<tr>
+				<th class="w-25">日付</th>
+                <th>9-10</th>
+                <th>11-12</th>
+                <th>13-14</th>
+                <th>15-16</th>
+                <th>17-18</th>
+                <th>19-20</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>12/2</th>
+				<td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                
+			</tr>
+			<tr>
+				<th>12/3</th>
+				<td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                
+			</tr>
+            <tr>
+				<th>12/4</th>
+				<td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                
+			</tr>
+            <tr>
+				<th>12/5</th>
+				<td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                
+			</tr>
+            <tr>
+				<th>12/6</th>
+				<td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                
+			</tr>
+            <tr>
+				<th>12/7</th>
+				<td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                
+			</tr>
+            <tr>
+				<th>12/8</th>
+				<td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                <td data-value="col1">選択</td>
+                
+			</tr>
+	</table>
+    <form method="get" action="action.html">
+        <input type="button" value="シフト希望確定">
+      </form>
+
+
+	<script>
+		$(document).ready(function () {
+			// td要素をクリックしたときの処理
+			$('td[data-value]').on('click', function () {
+				$(this).toggleClass('selected'); // 選択状態の切り替え
+
+				// 既存の<select>がない場合、追加する
+				if ($(this).find('select').length === 0) {
+					const selectHtml = `
+						<select name="担当希望" class="form-control mt-2">
+							<option value="レジ担当">レジ担当</option>
+							<option value="在庫担当">在庫担当</option>
+							<option value="売場担当">売場担当</option>
+						</select>`;
+					$(this).append(selectHtml);
+				}
+
+				// 選択されたすべての値を取得
+				let selectedValues = $('td.selected').map(function () {
+					return $(this).text();
+				}).get().join(', ');
+
+				// inputに選択された値を反映
+				$('input[data-value]').val(selectedValues);
+			});
+		});
+	</script>
+</body>
+</html>
