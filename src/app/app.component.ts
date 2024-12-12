@@ -1,20 +1,15 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { StaffShift } from './models/staff-shift.model';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
-@Injectable({
-  providedIn: 'root'
+@Component({
+  selector: 'app-root',
+  imports: [
+    CommonModule,
+  ],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
 })
-export class ShiftService {
-  private shiftsSubject = new BehaviorSubject<StaffShift[]>([]);
-  shifts$ = this.shiftsSubject.asObservable();
-
-  addShift(staffShift: StaffShift) {
-    const currentShifts = this.shiftsSubject.getValue();
-    this.shiftsSubject.next([...currentShifts, staffShift]);
-  }
-
-  getShifts() {
-    return this.shiftsSubject.getValue();
-  }
+export class AppComponent {
+  title = 'shift';
 }
