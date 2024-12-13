@@ -35,6 +35,7 @@ export class FirstComponent {
   selectedShifts: number[] = [];
 
 
+
   // シフト情報を送信するメソッド
   submitShift() {
     const newShift: StaffShift = {
@@ -75,5 +76,6 @@ export class FirstComponent {
   initializeFirebase(): void {
     initializeApp(firebaseConfig);
   }
+
   
 }
