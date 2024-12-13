@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  shiftData = [
+  shiftData: { date: string; shifts: Record<number, string> }[] = [
     {
       date: '2024-12-12',
       shifts: { 9: '田中 (レジ)', 10: '山田 (品出し)', 12: '鈴木 (レジ)', 14: '高橋 (品出し)', 17: '田中 (接客)', 18: '山田 (品出し)' }
@@ -28,7 +28,7 @@ export class AppComponent {
    * @param hour - 時間帯
    * @returns シフト情報（該当なしの場合は空文字）
    */
-  getShift(date: string, hour: any): string {
+  getShift(date: string, hour:number): string {
     const day = this.shiftData.find(d => d.date === date);
     return day?.shifts[hour] || '';
   }
