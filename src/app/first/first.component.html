@@ -3,15 +3,15 @@
 	<form>
 
 	<div>
-		<label for="employeeSelect">店舗名を選択してください:</label>
-		<select id="employeeSelect" [(ngModel)]="selectedStore">
+		<label for="storeSelect">店舗名を選択してください:</label>
+		<select id="storeSelect" [(ngModel)]="selectedStore">
 		  <option *ngFor="let store of stores" [value]="store.id">
 			{{ store.name }}
 		  </option>
 		</select>
 	  </div>
 
-	  <p>選択した店舗名: {{ selectedEmployee }}</p>
+	  <p>選択した店舗名: {{ selectedStore }}</p>
   
 	  <div>
 		<label for="employeeSelect">従業員を選択してください:</label>

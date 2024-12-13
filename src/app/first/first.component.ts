@@ -26,8 +26,8 @@ export class FirstComponent {
 
   }
 
-  employees: { id: string, name: string }[] = [];
   stores: { id: string, name: string }[] = [];
+  employees: { id: string, name: string }[] = [];
   selectedStore: string = '';
   selectedEmployee: string = '';
   selectedRole: string = '';
@@ -61,14 +61,14 @@ export class FirstComponent {
   }
 
   async fetchStores(): Promise<void> {
-    const employeesCol = collection(this.db, 'store');
-    const employeeSnapshot = await getDocs(employeesCol);
+    const storeCol = collection(this.db, 'store');
+    const storeSnapshot = await getDocs(storeCol);
 
-    this.employees = employeeSnapshot.docs.map((doc) => ({
+    this.stores = storeSnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data()
     })) as { id: string; name: string }[];
-    console.log(this.employees);
+    console.log(this.stores);
   }
 
 
