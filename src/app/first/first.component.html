@@ -6,10 +6,17 @@
 		<option *ngFor="let store of stores" [value]="store">{{ store }}</option>
 	  </select>
   
-	  <label for="employee">店員を選択:</label>
-	  <select [(ngModel)]="selectedEmployee" name="employee" required>
-		<option *ngFor="let employee of employees" [value]="employee">{{ employee }}</option>
-	  </select>
+	  <div>
+		<label for="employeeSelect">従業員を選択してください:</label>
+		<select id="employeeSelect" [(ngModel)]="selectedEmployee">
+		  <option *ngFor="let employee of employees" [value]="employee.id">
+			{{ employee.name }}
+		  </option>
+		</select>
+	  </div>
+	  
+	  <p>選択した従業員: {{ selectedEmployee }}</p>
+	  
   
 	  <label for="role">担当業務を選択:</label>
 	  <select [(ngModel)]="selectedRole" name="role" required>
