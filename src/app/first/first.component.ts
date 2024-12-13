@@ -3,6 +3,7 @@ import { ShiftService, StaffShift } from '../shift.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 
 @Component({
   selector: 'app-first',
@@ -11,10 +12,12 @@ import { FormsModule } from '@angular/forms';
   imports: [ CommonModule,
               FormsModule
             ]
+            
 })
+
 export class FirstComponent {
   stores = ['店舗A', '店舗B', '店舗C'];
-  employees = ['田中太郎', '鈴木花子', '佐藤恒之'];
+  employees = [];
   selectedStore: string = '';
   selectedEmployee: string = '';
   selectedRole: string = '';
@@ -36,4 +39,23 @@ export class FirstComponent {
     // サービスを使ってシフトデータを更新
     this.shiftService.updateShiftData([newShift]);
   }
+  
+  const db = getFirestore();
+  const ref = doc(db, 'employee/employee1/name');
+  
+  async function readData() {
+    try {
+      const snapshot = await getDoc(ref);
+      if (snapshot.exists()) {
+        console.log(snapshot.data());
+      } else {
+        console.log('No such document!');
+      }
+    } catch (error) {
+      console.log('Error getting document:', error);
+    }
+  }
+  
+  readData();
+  
 }
