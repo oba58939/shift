@@ -19,13 +19,15 @@ import { firebaseConfig } from '../../environments/environment';
 export class FirstComponent {
   private db = getFirestore(initializeApp(firebaseConfig));
 
-  employees: { id: string, name: string }[] = [];
-
+  
   constructor(private shiftService: ShiftService) {
     this.fetchEmployees();
+    this.fetchStores();
+
   }
-  
-  stores = ['店舗A', '店舗B', '店舗C'];
+
+  employees: { id: string, name: string }[] = [];
+  stores: { id: string, name: string }[] = [];
   selectedStore: string = '';
   selectedEmployee: string = '';
   selectedRole: string = '';
@@ -47,9 +49,19 @@ export class FirstComponent {
     this.shiftService.updateShiftData([newShift]);
   }
   
-  newTaskName: string = '';
   async fetchEmployees(): Promise<void> {
     const employeesCol = collection(this.db, 'employee');
+    const employeeSnapshot = await getDocs(employeesCol);
+
+    this.employees = employeeSnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data()
+    })) as { id: string; name: string }[];
+    console.log(this.employees);
+  }
+
+  async fetchStores(): Promise<void> {
+    const employeesCol = collection(this.db, 'store');
     const employeeSnapshot = await getDocs(employeesCol);
 
     this.employees = employeeSnapshot.docs.map((doc) => ({

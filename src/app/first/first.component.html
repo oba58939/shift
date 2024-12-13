@@ -1,10 +1,17 @@
 <div class="container">
 	<h1>シフト入力画面</h1>
-	<form (ngSubmit)="submitShift()">
-	  <label for="store">店舗を選択:</label>
-	  <select [(ngModel)]="selectedStore" name="store" required>
-		<option *ngFor="let store of stores" [value]="store">{{ store }}</option>
-	  </select>
+	<form>
+
+	<div>
+		<label for="employeeSelect">店舗名を選択してください:</label>
+		<select id="employeeSelect" [(ngModel)]="selectedStore">
+		  <option *ngFor="let store of stores" [value]="store.id">
+			{{ store.name }}
+		  </option>
+		</select>
+	  </div>
+
+	  <p>選択した店舗名: {{ selectedEmployee }}</p>
   
 	  <div>
 		<label for="employeeSelect">従業員を選択してください:</label>
