@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
 import { ShiftService, StaffShift } from '../shift.service';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-first',
   templateUrl: './first.component.html',
-  styleUrls: ['./first.component.css']
+  styleUrl: './first.component.css',
+  imports: [ CommonModule,
+              FormsModule
+            ]
 })
 export class FirstComponent {
   stores = ['店舗A', '店舗B', '店舗C'];

@@ -1,9 +1,10 @@
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import {FirstComponent} from './first/first.component';
-import {SecondComponent} from './second/second.component';
+import { NgModel } from '@angular/forms';
 
 export const routes: Routes = [
     { path: 'first-component', component: FirstComponent },
-    { path: 'second-component', component: SecondComponent },
   ];
 
+
+export class AppRoutingModel{}
