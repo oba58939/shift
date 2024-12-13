@@ -11,6 +11,10 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+getShiftsAsArray(arg0: Record<number,string>): any {
+throw new Error('Method not implemented.');
+}
+  // シフトデータ
   shiftData: { date: string; shifts: Record<number, string> }[] = [
     {
       date: '2024-12-12',
@@ -21,15 +25,4 @@ export class AppComponent {
       shifts: { 9: '鈴木 (レジ)', 10: '田中 (品出し)', 12: '高橋 (レジ)', 17: '山田 (接客)', 18: '鈴木 (品出し)' }
     }
   ];
-
-  /**
-   * 指定された日付と時間帯に対応するシフト情報を取得
-   * @param date - 日付
-   * @param hour - 時間帯
-   * @returns シフト情報（該当なしの場合は空文字）
-   */
-  getShift(date: string, hour:number): string {
-    const day = this.shiftData.find(d => d.date === date);
-    return day?.shifts[hour] || '';
-  }
 }

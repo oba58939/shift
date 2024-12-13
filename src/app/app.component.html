@@ -22,12 +22,13 @@
     <tbody>
       <tr *ngFor="let day of shiftData">
         <th>{{ day.date }}</th>
-        <td *ngFor="let shift of day.shifts">
+        <td *ngFor="let shift of getShiftsAsArray(day.shifts)">
           <ul *ngIf="shift">
-            <li *ngFor="let item of shift.split(', ')">{{ item }}</li>
+            <li>{{ shift[1] }}</li>
           </ul>
         </td>
       </tr>
+      
     </tbody>
   </table>
 
