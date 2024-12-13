@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { ShiftService } from './shift.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'] ,
+  standalone: true // これでスタンドアロンコンポーネントとして宣言
 })
 export class AppComponent {
   shiftData: any[] = [];

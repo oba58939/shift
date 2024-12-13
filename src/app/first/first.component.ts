@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ShiftService, StaffShift } from '../shift.service';
+import { NgModule } from '@angular/core';
 
 @Component({
   selector: 'app-first',
