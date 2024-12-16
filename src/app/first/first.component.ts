@@ -17,6 +17,25 @@ import { firebaseConfig } from '../../environments/environment';
   imports: [ CommonModule,FormsModule]})
 
 export class FirstComponent {
+
+  availableShifts: number[] = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+
+  // 選択されたシフトの時間
+  selectedShifts: number[] = [];
+
+  // チェックボックスの選択状態を切り替える関数
+  toggleShift(shift: number, event: Event): void {
+    const isChecked = (event.target as HTMLInputElement).checked;
+
+    if (isChecked) {
+      // チェックが付いた場合、配列に追加
+      this.selectedShifts.push(shift);
+    } else {
+      // チェックが外れた場合、配列から削除
+      this.selectedShifts = this.selectedShifts.filter((s) => s !== shift);
+    }
+  }
+
   private db = getFirestore(initializeApp(firebaseConfig));
 
   
@@ -32,8 +51,6 @@ export class FirstComponent {
   selectedEmployee: string = '';
   selectedRole: string = '';
   selectedDate: string = '';
-  selectedShifts: number[] = [];
-
 
 
   // シフト情報を送信するメソッド

@@ -10,8 +10,6 @@
 		  </option>
 		</select>
 	  </div>
-
-	  <p>選択した店舗名: {{ selectedStore }}</p>
   
 	  <div>
 		<label for="employeeSelect">従業員を選択してください:</label>
@@ -21,10 +19,7 @@
 		  </option>
 		</select>
 	  </div>
-	  
-	  <p>選択した従業員: {{ selectedEmployee }}</p>
-	  
-  
+	    
 	  <label for="role">担当業務を選択:</label>
 	  <select [(ngModel)]="selectedRole" name="role" required>
 		<option value="レジ">レジ</option>
@@ -32,24 +27,26 @@
 		<option value="接客">接客</option>
 	  </select>
   
+	  <br>
+
 	  <label for="date">シフトの日付:</label>
 	  <input type="date" [(ngModel)]="selectedDate" name="date" required />
-  
+
+  	<br>
+	
 	  <label for="shifts">勤務時間帯を選択:</label>
 	  <div>
-		<input type="checkbox" [(ngModel)]="selectedShifts" name="shifts" [value]="9"> 9:00
-		<input type="checkbox" [(ngModel)]="selectedShifts" name="shifts" [value]="10"> 10:00
-		<input type="checkbox" [(ngModel)]="selectedShifts" name="shifts" [value]="11"> 11:00
-		<input type="checkbox" [(ngModel)]="selectedShifts" name="shifts" [value]="12"> 12:00
-		<input type="checkbox" [(ngModel)]="selectedShifts" name="shifts" [value]="13"> 13:00
-		<input type="checkbox" [(ngModel)]="selectedShifts" name="shifts" [value]="14"> 14:00
-		<input type="checkbox" [(ngModel)]="selectedShifts" name="shifts" [value]="15"> 15:00
-		<input type="checkbox" [(ngModel)]="selectedShifts" name="shifts" [value]="16"> 16:00
-		<input type="checkbox" [(ngModel)]="selectedShifts" name="shifts" [value]="17"> 17:00
-		<input type="checkbox" [(ngModel)]="selectedShifts" name="shifts" [value]="18"> 18:00
-		<input type="checkbox" [(ngModel)]="selectedShifts" name="shifts" [value]="19"> 19:00
-		<input type="checkbox" [(ngModel)]="selectedShifts" name="shifts" [value]="20"> 20:00
+		<div *ngFor="let shift of availableShifts">
+		  <input
+			type="checkbox"
+			[value]="shift"
+			(change)="toggleShift(shift, $event)"
+			[checked]="selectedShifts.includes(shift)"
+		  />
+		  {{ shift }}:00
+		</div>
 	  </div>
+	  
   
 	  <button type="submit">シフトを保存</button>
 	</form>
