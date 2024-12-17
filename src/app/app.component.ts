@@ -8,7 +8,8 @@ interface StaffShift {
   staffName: string; // 店員の名前
   role: string; // 担当業務
   date: string; // シフト希望の日付 (YYYY-MM-DD形式)
-  shifts: number[]; // シフトに入る時間帯の配列 (例: [9, 10, 12])
+  startTime: number;     // シフト開始時間 (例: 9)
+  endTime: number;       // シフト終了時間 (例: 12)
 }
 
 @Component({
@@ -46,7 +47,7 @@ export class AppComponent {
 
   getShiftAt(date: string, hour: number): StaffShift | undefined {
     return this.shiftData.find(shift => 
-      shift.date === date && shift.shifts <= hour && shift.endTime > hour
+      shift.date === date && shift.startTime <= hour && shift.endTime > hour
     );
   }
 
