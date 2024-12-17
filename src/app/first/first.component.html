@@ -34,22 +34,35 @@
 
   	<br>
 	
-	  <label for="shifts">勤務開始時間を選択:</label>
+	  <label for="startShift">勤務開始時間を選択:</label>
 	  <div>
 		<div *ngFor="let shift of availableShifts">
-		  <input
+		  <input>
 			type="radio"
-			name="shiftSelection" <!-- 同じグループとして扱う -->
+			name="shiftSelection" <!-- グループ1 -->
 			[value]="shift"
-			(change)="selectShift(shift)"
-			[checked]="selectedShift === shift"
+			(change)="selectstart(shift)"
+			[checked]="selectedstart === shift"
 		  />
 		  {{ shift }}:00
 		</div>
 	  </div>
-	  <p>選択した時間: {{ selectedShift }}:00</p>
+	  <p>選択した開始時間: {{ selectedstart }}:00</p>
 	  
-	  
+	  <label for="endshift">勤務終了時間を選択:</label>
+	  <div>
+		<div *ngFor="let shift of availableShifts">
+		  <input>
+			type="radio"
+			name="shiftSelection" <!-- グループ2 -->
+			[value]="shift"
+			(change)="selectend(shift)"
+			[checked]="selectedend === shift"
+		  />
+		  {{ shift }}:00
+		</div>
+	  </div>
+	  <p>選択した時間: {{ selectedend }}:00</p>
   
 	  <button type="submit">シフトを保存</button>
 	</form>

@@ -20,12 +20,18 @@ export class FirstComponent {
 
   availableShifts: number[] = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
-  selectedShift: number | null = null; // 選択されたシフトの時間
+  selectedstart: number | null = null;
+  selectedend: number | null = null; // 選択されたシフトの時間
 
   // ラジオボタンが選択されたときに呼び出される
-  selectShift(shift: number): void {
-    this.selectedShift = shift;
-    console.log('選択された時間:', this.selectedShift);
+  selectstart(shift: number): void {
+    this.selectedstart = shift;
+    console.log('勤務開始時間:', this.selectedstart);
+  }
+
+  selectend(shift: number): void {
+    this.selectedend = shift;
+    console.log('勤務終了時間:', this.selectedend);
   }
 
   private db = getFirestore(initializeApp(firebaseConfig));
@@ -43,9 +49,6 @@ export class FirstComponent {
   selectedEmployee: string = '';
   selectedRole: string = '';
   selectedDate: string = '';
-  startTime: number = ''; 
-      endTime: this.selestedend,
-
 
   // シフト情報を送信するメソッド
   submitShift() {
@@ -54,8 +57,8 @@ export class FirstComponent {
       staffName: this.selectedEmployee,
       role: this.selectedRole,
       date: this.selectedDate,
-      startTime: this.selectedstart, 
-      endTime: this.selestedend,
+      startTime: 0,
+      endTime: 0
     };
 
     // サービスを使ってシフトデータを更新
