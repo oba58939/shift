@@ -7,7 +7,8 @@ export interface StaffShift {
   staffName: string; // 店員の名前
   role: string; // 担当業務
   date: string; // シフト希望の日付 (YYYY-MM-DD形式)
-  shifts: number[]; // シフトに入る時間帯の配列 (例: [9, 10, 12])
+  startTime: number;  // 開始時間 (例: 9)
+  endTime: number;    // 終了時間 (例: 12)
 }
 
 @Injectable({

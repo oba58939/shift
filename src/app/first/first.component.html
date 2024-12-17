@@ -34,18 +34,21 @@
 
   	<br>
 	
-	  <label for="shifts">勤務時間帯を選択:</label>
+	  <label for="shifts">勤務開始時間を選択:</label>
 	  <div>
 		<div *ngFor="let shift of availableShifts">
 		  <input
-			type="checkbox"
+			type="radio"
+			name="shiftSelection" <!-- 同じグループとして扱う -->
 			[value]="shift"
-			(change)="toggleShift(shift, $event)"
-			[checked]="selectedShifts.includes(shift)"
+			(change)="selectShift(shift)"
+			[checked]="selectedShift === shift"
 		  />
 		  {{ shift }}:00
 		</div>
 	  </div>
+	  <p>選択した時間: {{ selectedShift }}:00</p>
+	  
 	  
   
 	  <button type="submit">シフトを保存</button>
